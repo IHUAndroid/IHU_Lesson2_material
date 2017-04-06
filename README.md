@@ -1,5 +1,5 @@
 # IHU Lesson02-material
-###The second lesson includes the invocation of remote functions (Web Service) to retrieve weather forecasts from real weather services 
+### The second lesson includes the invocation of remote functions (Web Service) to retrieve weather forecasts from real weather services 
 
 To begin, we should introduce and explain the Web Service notion.
 
@@ -106,7 +106,7 @@ Parenthesis 2: Thread
 
 So, we will a class that will ease the creation of hreads and UI thread synchronization 
 
-##[AsyncTask](https://developer.android.com/reference/android/os/AsyncTask.html)##
+## [AsyncTask](https://developer.android.com/reference/android/os/AsyncTask.html) ##
 
 After studing the ```AsyncTask```, we will use it to transfer there the code that was offhandedly pasted inside ```PlaceholderFragment```.
 
@@ -132,8 +132,8 @@ Let's add the refresh button. It will be placed in the main menu, so we have to 
 
 ![Menu structure](https://github.com/UomMobileDevelopment/Lesson03-material/blob/master/menu.png)
 
-Αρχικά θα πρέπει να προσθέσουμε ένα νέο XML αρχείο στον φάκελο res/menu. 
-Δημιουργούμε το menu resource file ```forecastFragment.xml``` με περιεχόμενα:
+We should first add a new xml file inside res/menu. 
+Create the file ```forecastFragment.xml``` with contents:
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -151,7 +151,7 @@ Let's add the refresh button. It will be placed in the main menu, so we have to 
 </menu>
 ```
 
-Στη συνέχεια, υλοποιούμε τις παρακάτω μεθόδους στην κλάση ForecastFragment
+Implement the following methods in ForecastFragment
 
 ```
 @Override
@@ -160,14 +160,18 @@ Let's add the refresh button. It will be placed in the main menu, so we have to 
         setHasOptionsMenu(true);
     }
 ```
-Δηλώνει πως το Fragment αυτό έχει μια δική του επιλογή στο μενού (συγκεκριμένα τη Refresh)
+This states that the Fragment has its own menu option (the Refresh option). Each fragment can have different menu options.
+
+
 ```
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.forecastfragment, menu);
     }
 ```
-κάνει inflate (φορτώνει στο view) την επιλογή Refreash του μενού
+this code inflates (loads the option) 'Refresh' in the menu 
+
+
 ```
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -180,21 +184,22 @@ Let's add the refresh button. It will be placed in the main menu, so we have to 
         return super.onOptionsItemSelected(item);
     }
 ```
-Δηλώνει ποιος κώδικας θα τρέχει όταν πατηθεί η επιλογή Refresh στο μενού. Προσθέσαμε και τη δημιουργία και κλήση του νέου AsyncTask
+this snippet defines the code that will run when the 'Refresh' option is tapped. We add the creation and invocation of our new AsyncTask
 
-ΟΜΩΣ! Αν τρέξουμε την εφαρμογή και πατήσουμε Refresh, η εφαρμογή θα κρασάρει και θα σταματήσει! Στα logs βλέπουμε τον λόγο:
+# BUT! 
+If we run the App and hit 'Refresh' we will get a nice CRASH!! Search the logs to find out why:
 
 ```
  Caused by: java.lang.SecurityException: Permission denied (missing INTERNET permission?)
 ```
 
-Πρέπει να ζητήσουμε την άδεια απο το σύστημα για να πάρουμε πρόσβαση στο Internet. Αυτό γίνεται προσθέτοντας την εντολή
+We need to ask the system for the internet permission, in order for our app to be able to communicate with the outer world! We should add the following statement 
 
 ```  
 <uses-permission android:name="android.permission.INTERNET" />
 ```
 
-στο αρχείο AndroidManifest.xml σε αυτό το σημείο:
+in the ```AndroidManifest.xml```, in this area:
 
 ```
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -203,25 +208,24 @@ Let's add the refresh button. It will be placed in the main menu, so we have to 
 ....
 ```
 
-Για να επιβεβαιώσουμε τώρα οτι έρχονται σωστά τα δεδομένα απο την υπηρεσία καιρού προσθέτουμε μια εντολή LOG στο FetchWeatherTask για να εμφανίσουμε τη μεταβλητή forecastJsonStr:
+Now the App should work smoothly! To validate the correct weather data retrieval, we can add a LOG statement in FetchWeatherTask to display the forecastJsonStr variable:
 
 ```
  forecastJsonStr = buffer.toString();
  Log.v(LOG_TAG,"Forecast JSON String: "+forecastJsonStr);
 ```
 
-και βλέπουμε το LOG στην καρτέλα AndroidMonitor του Android Studio. Τα δεδομένα έρχονται κανονικά.
+we can see the LOG output in the AndroidMonitor tab of Android Studio. Weather data should be fine by now.
 
 
-Βελτιώνουμε την δημιουργία του Web Service URL και εισάγουμε παραμετροποίηση στο Fetch Weathet Task έτσι ώστε να δέχεται σαν πρώτη παράμετρο τον κωδικό κάποιας πόλης και να φέρνει τον καιρό απο τη συγκεκριμένη πόλη.
-
+We should now improve the functionality of the Web Service URL and introduce some parameterization in Fetch Weathet Task so it can take a city code as a paraemeter and fetch the weather for this specific city
 ```
  AsyncTask<String, Void, Void> weatherTask = new FetchWeatherTask().execute("734077");
 ```
 
-Δείτε στο αρχείο [greek-city-codes.csv](https://github.com/UomMobileDevelopment/Lesson03-material/blob/master/greek-city-codes.csv) για κωδικούς απο όλες τις ελληνικές πόλεις.
+See the file [greek-city-codes.csv](https://github.com/UomMobileDevelopment/Lesson03-material/blob/master/greek-city-codes.csv) for the codes for all major Greek cities
 
-Το URL θα 'χτιστεί' παραμετρικά με τη βοήθεια του URI Builder:
+URL can be built parametrically with the help of the URI Builder:
 
 ```
                 ......
