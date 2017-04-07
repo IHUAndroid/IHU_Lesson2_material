@@ -265,6 +265,10 @@ URL can be built parametrically with the help of the URI Builder:
                 .......
 ```
 
+---------------------------------
+END OF LESSON 2 - UNTIL HERE
+--------------------------------
+
 ##JSON Parsing##
 
 Quiz: Parse Out The Max Temp
