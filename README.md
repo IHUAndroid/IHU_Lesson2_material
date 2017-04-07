@@ -126,7 +126,7 @@ Now the App runs without crashing but our data is still dummy
 
 We will add a button in the main menu that will trigger the weather fetching from the remote weather service. However we need to understand that this is only a debugging-oriented solution and should not be implemented in production systems. It is a BAD idea to depend on user interaction to load your data. A good App is like a good buttler, it should know when to serve neccessary info, the time you need it!  Relative video: https://www.youtube.com/watch?v=VFdIy0GjUEs
 
-Furthermore, the data fetching task needs some improvements, cause it is rather binded to the UI Activity and therefore, any change to the UI (eg, a screen orientation change) will interrupt also the data retrieval!!. But for now, lets stick to this solution.
+Furthermore, the data fetching task needs some improvements, cause it is rather binded to the UI Activity and therefore, any change to the UI (eg, a screen orientation change) will also interrupt data retrieval!!. But for now, lets stick to this solution.
 
 Let's add the refresh button. It will be placed in the main menu, so we have to say few words about the Android MENU:
 
