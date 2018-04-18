@@ -1,4 +1,5 @@
-# IHU Lesson02-material
+# IHU Lesson02-material - 2018 edition!
+
 ### The second lesson includes the invocation of remote functions (Web Service) to retrieve weather forecasts from real weather services 
 
 To begin, we should introduce and explain the Web Service notion.
@@ -122,7 +123,8 @@ The error is
 ```Caused by: android.os.NetworkOnMainThreadException``` 
 and actually complains because we created a network connection inside a method of the Main Thread.
 
-Parenthesis 2: Thread
+#Parenthesis 2: Threads
+
 ![Threads](https://github.com/UomMobileDevelopment/Lesson03-material/blob/master/threads.png)
 
 So, we will a class that will ease the creation of hreads and UI thread synchronization 
