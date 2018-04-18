@@ -123,7 +123,7 @@ The error is
 ```Caused by: android.os.NetworkOnMainThreadException``` 
 and actually complains because we created a network connection inside a method of the Main Thread.
 
-#Parenthesis 2: Threads
+## Parenthesis 2: Threads
 
 ![Threads](https://github.com/UomMobileDevelopment/Lesson03-material/blob/master/threads.png)
 
