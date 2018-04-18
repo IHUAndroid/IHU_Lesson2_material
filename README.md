@@ -22,7 +22,7 @@ Parenthesis: Java Logging
 
 ![logging types](https://github.com/UomMobileDevelopment/Lesson03-material/blob/master/logging-types.png)
 
-We will need this code portion:
+We will need to write some code!
 
 ```       
             // These two need to be declared outside the try/catch
@@ -32,19 +32,34 @@ We will need this code portion:
 
             // Will contain the raw JSON response as a string.
             String forecastJsonStr = null;
+```
 
+declare the variables for the url connection and the buffered reader
+
+```
             try {
                 // Construct the URL for the OpenWeatherMap query
                 // Possible parameters are avaiable at OWM's forecast API page, at
                 // http://openweathermap.org/API#forecast
                 //MODIFIED FOR CITY OF THESSALONIKI, GREECE
                 URL url = new URL("http://api.openweathermap.org/data/2.5/forecast/daily?id=734077&mode=json&units=metric&cnt=7");
+```
 
+Create the URL. Note that this is not the optimum way!
+
+
+```
                 // Create the request to OpenWeatherMap, and open the connection
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();
+```
 
+create the url connection by using the method, ````url.openConnection()```
+the connect() method sends the request.
+
+
+```
                 // Read the input stream into a String
                 InputStream inputStream = urlConnection.getInputStream();
                 StringBuffer buffer = new StringBuffer();
@@ -53,7 +68,10 @@ We will need this code portion:
                     return null;
                 }
                 reader = new BufferedReader(new InputStreamReader(inputStream));
+````
+Now it is time to read the response
 
+```
                 String line;
                 while ((line = reader.readLine()) != null) {
                     // Since it's JSON, adding a newline isn't necessary (it won't affect parsing)
