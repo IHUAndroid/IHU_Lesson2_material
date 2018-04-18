@@ -108,8 +108,6 @@ and handle possible exceptions...
                 }
             }
 
-            return rootView;
-
 
 ```
 paste the code inside method ```onCreateView()``` of class ```ForecastFragment```, just after the statement:
