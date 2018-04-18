@@ -55,7 +55,7 @@ Create the URL. Note that this is not the optimum way!
                 urlConnection.connect();
 ```
 
-create the url connection by using the method, ````url.openConnection()```
+create the url connection by using the method, ```url.openConnection()```
 the connect() method sends the request.
 
 
@@ -118,7 +118,9 @@ listView.setAdapter(...)
 
 Executing the App at this time will result in Error and App Crash!
 
-The error is of type ```NetworkOnMainThreadException``` and actually complains because we created a network connection inside a method of the Main Thread.
+The error is 
+```Caused by: android.os.NetworkOnMainThreadException``` 
+and actually complains because we created a network connection inside a method of the Main Thread.
 
 Parenthesis 2: Thread
 ![Threads](https://github.com/UomMobileDevelopment/Lesson03-material/blob/master/threads.png)
