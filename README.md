@@ -154,7 +154,7 @@ Let's add the refresh button. It will be placed in the main menu, so we have to 
 ![Menu structure](https://github.com/UomMobileDevelopment/Lesson03-material/blob/master/menu.png)
 
 We should first add a new xml file inside res/menu. 
-Create the file ```forecastFragment.xml``` with contents:
+Create the file ```forecast_fragment.xml``` with contents:
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
