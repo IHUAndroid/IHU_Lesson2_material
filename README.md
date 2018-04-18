@@ -86,12 +86,10 @@ We will need this code portion:
             }
 
             return rootView;
-        }
-    }
-}
+
 
 ```
-paste the code inside method ```onCreateView()``` of class ```PlaceholderFragment```, just after the statement:
+paste the code inside method ```onCreateView()``` of class ```ForecastFragment```, just after the statement:
 
 ```
 listView.setAdapter(...)
@@ -108,13 +106,11 @@ So, we will a class that will ease the creation of hreads and UI thread synchron
 
 ## [AsyncTask](https://developer.android.com/reference/android/os/AsyncTask.html) ##
 
-After studing the ```AsyncTask```, we will use it to transfer there the code that was offhandedly pasted inside ```PlaceholderFragment```.
+After studing the ```AsyncTask```, we will use it to transfer there the code that was offhandedly pasted inside ```ForecastFragment```.
 
 We have to do some Refactoring:
 
-   1. Rename PlaceholderFragment -> ForecastFragment
-   2. Move ForecastFragment to new file
-   3. Create a new AsyncTask child called FetchWeatherTask with the networking code snippet from above. This class should be created inside ForecastFragment, like this
+   1. Create a new AsyncTask child called FetchWeatherTask with the networking code snippet from above. This class should be created inside ForecastFragment, like this
    ```
    public class FetchWeatherTask extends AsyncTask<Void,Void,Void> {
    ....
