@@ -79,7 +79,12 @@ Now it is time to read the response
                     // buffer for debugging.
                     buffer.append(line + "\n");
                 }
+```
+Read the buffer line by line...
 
+and handle possible exceptions...
+
+```
                 if (buffer.length() == 0) {
                     // Stream was empty.  No point in parsing.
                     return null;
