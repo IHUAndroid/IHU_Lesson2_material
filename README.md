@@ -294,7 +294,7 @@ URL can be built parametrically with the help of the URI Builder:
 
 --------------------------------------------------------
 
-## Etra Section: Guide for Safe API key management 
+## Extra Section: Guide for Safe API key management 
 
 As you can probably imagine, you should not contain passwords or api keys inside your source code!
 
