@@ -319,12 +319,13 @@ android {
 ....
 ....
 ...
-**
+
+
     buildTypes.each {
         it.buildConfigField 'String', 'OPEN_WEATHER_MAP_API_KEY', MyOpenWeatherMapApiKey
     }
     
-    **
+    
 }
 ```
 
