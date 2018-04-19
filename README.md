@@ -292,5 +292,41 @@ URL can be built parametrically with the help of the URI Builder:
                 .......
 ```
 
+--------------------------------------------------------
+
+## Etra Section: Guide for Safe API key management 
+
+As you can probably imagine, you should not contain passwords or api keys inside your source code!
+
+Android provides a simple way to store API keys and passwords in a safe folder inside the Operating System, and then, reference them through the BuildConfig helper class
+
+#### Guide to safely manage passwords and API keys:
+
+```
+1. Locate the file ~/.gradle/gradle.properties 
+The symbol ~ means the main user folder.
+If the file gradle.properties does not exist, create it
+
+2. Open the file and add a new line:
+
+MyOpenWeatherMapApiKey=”YOUR_API_KEY”
+
+3. In the source code locate the file:  app/build.gradle 
+
+4. Add the following section (in bold)
+android {
+
+....
+....
+...
+**
+    buildTypes.each {
+        it.buildConfigField 'String', 'OPEN_WEATHER_MAP_API_KEY', MyOpenWeatherMapApiKey
+    }
+    
+    **
+}
+```
+
 ---------------------------------
 END OF LESSON 2
